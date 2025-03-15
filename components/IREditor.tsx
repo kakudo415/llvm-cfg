@@ -40,15 +40,17 @@ const IREditor: React.FC<IREditorProps> = ({ code, onChange }) => {
         value={code}
         onChange={(e) => onChange(e.target.value)}
         onScroll={handleScroll}
-        className="absolute inset-0 w-full h-full p-4 font-mono text-transparent bg-transparent resize-none z-10 caret-black dark:caret-white"
+        className="absolute inset-0 w-full h-full p-4 font-mono text-transparent bg-transparent resize-none z-10 caret-black dark:caret-white text-[14px] leading-[1.5]"
         spellCheck="false"
         autoCapitalize="off"
         autoComplete="off"
         autoCorrect="off"
+        style={{ fontFamily: "'Menlo', 'Monaco', 'Consolas', 'Liberation Mono', 'Courier New', monospace" }}
       />
       <pre
         ref={previewRef}
-        className="absolute inset-0 w-full h-full p-4 font-mono overflow-auto pointer-events-none"
+        className="absolute inset-0 w-full h-full p-4 font-mono overflow-auto pointer-events-none text-[14px] leading-[1.5]"
+        style={{ fontFamily: "'Menlo', 'Monaco', 'Consolas', 'Liberation Mono', 'Courier New', monospace" }}
       >
         <code className={isMounted ? "language-llvm" : ""}>{code || ' '}</code>
       </pre>

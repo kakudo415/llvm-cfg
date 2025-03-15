@@ -64,10 +64,16 @@ const CFGViewer: React.FC<CFGViewerProps> = ({ data }) => {
 
     // ノードの追加
     data.nodes.forEach(node => {
+      // コンテンツの行数に基づいて高さを計算
+      const contentLines = node.content.split('\n');
+      const lineCount = contentLines.length;
+      // 基本の高さ + 行数 * 行の高さ
+      const height = Math.max(100, 40 + lineCount * 16);
+
       g.setNode(node.id, {
         label: node.label,
-        width: 200,
-        height: 100,
+        width: 220, // 幅を少し広げる
+        height: height,
         rx: 5,
         ry: 5,
         content: node.content,
@@ -123,11 +129,15 @@ const CFGViewer: React.FC<CFGViewerProps> = ({ data }) => {
       if (node.content) {
         const contentLines = node.content.split('\n');
         contentLines.forEach((line: string, i: number) => {
+          // 長いテキストを切り詰める
+          const truncatedLine = line.length > 28 ? line.substring(0, 25) + '...' : line;
           nodeGroup.append('text')
             .attr('x', 10)
             .attr('y', 40 + i * 16)
             .attr('font-size', '12px')
-            .text(line);
+            .attr('fill', '#333') // 明示的に色を設定
+            .attr('stroke', 'none') // 縁取りを削除
+            .text(truncatedLine);
         });
       }
     });
