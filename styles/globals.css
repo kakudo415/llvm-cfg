@@ -1,0 +1,87 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --foreground-rgb: 0, 0, 0;
+  --background-rgb: 255, 255, 255;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --foreground-rgb: 255, 255, 255;
+    --background-rgb: 30, 30, 30;
+  }
+}
+
+body {
+  color: rgb(var(--foreground-rgb));
+  background: rgb(var(--background-rgb));
+  min-height: 100vh;
+}
+
+.llvm-ir-editor {
+  font-family: 'Menlo', 'Monaco', 'Consolas', 'Liberation Mono', 'Courier New', monospace;
+  font-size: 14px;
+  line-height: 1.5;
+  tab-size: 2;
+}
+
+.cfg-viewer svg {
+  width: 100%;
+  height: 100%;
+  min-height: 500px;
+}
+
+.cfg-node {
+  fill: #f8f8f8;
+  stroke: #333;
+  stroke-width: 1.5px;
+  rx: 5;
+  ry: 5;
+}
+
+.cfg-node text {
+  font-family: 'Menlo', 'Monaco', 'Consolas', 'Liberation Mono', 'Courier New', monospace;
+  font-size: 12px;
+  fill: #333;
+}
+
+.cfg-edge path {
+  stroke: #666;
+  stroke-width: 1.5px;
+  fill: none;
+}
+
+.cfg-edge marker {
+  fill: #666;
+}
+
+.cfg-edge text {
+  font-family: 'Menlo', 'Monaco', 'Consolas', 'Liberation Mono', 'Courier New', monospace;
+  font-size: 10px;
+  fill: #666;
+}
+
+@media (prefers-color-scheme: dark) {
+  .cfg-node {
+    fill: #2d2d2d;
+    stroke: #aaa;
+  }
+
+  .cfg-node text {
+    fill: #eee;
+  }
+
+  .cfg-edge path {
+    stroke: #aaa;
+  }
+
+  .cfg-edge marker {
+    fill: #aaa;
+  }
+
+  .cfg-edge text {
+    fill: #ccc;
+  }
+}
