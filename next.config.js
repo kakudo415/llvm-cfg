@@ -5,8 +5,9 @@ const nextConfig = {
   images: {
     unoptimized: true,
   },
-  basePath: process.env.NODE_ENV === 'production' ? '/llvm-cfg' : '',
-  assetPrefix: process.env.NODE_ENV === 'production' ? '/llvm-cfg/' : '',
+  // カスタムドメインを使用するため、basePath と assetPrefix は不要
+  basePath: '',
+  assetPrefix: '',
 }
 
 module.exports = nextConfig
