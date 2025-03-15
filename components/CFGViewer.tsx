@@ -70,9 +70,18 @@ const CFGViewer: React.FC<CFGViewerProps> = ({ data }) => {
       // 基本の高さ + 行数 * 行の高さ
       const height = Math.max(100, 40 + lineCount * 16);
 
+      // 各行の長さを計算し、最も長い行に基づいて幅を決定
+      const maxLineLength = Math.max(
+        ...contentLines.map(line => line.length),
+        node.label ? node.label.length : 0
+      );
+      // 文字あたりの幅を約7pxとして計算し、左右に均等な余白を追加
+      const padding = 20; // 左右それぞれ10pxの余白
+      const width = Math.max(220, maxLineLength * 7 + padding * 2);
+
       g.setNode(node.id, {
         label: node.label,
-        width: 220, // 幅を少し広げる
+        width: width,
         height: height,
         rx: 5,
         ry: 5,
@@ -129,15 +138,13 @@ const CFGViewer: React.FC<CFGViewerProps> = ({ data }) => {
       if (node.content) {
         const contentLines = node.content.split('\n');
         contentLines.forEach((line: string, i: number) => {
-          // 長いテキストを切り詰める
-          const truncatedLine = line.length > 28 ? line.substring(0, 25) + '...' : line;
           nodeGroup.append('text')
             .attr('x', 10)
             .attr('y', 40 + i * 16)
             .attr('font-size', '12px')
             .attr('fill', '#333') // 明示的に色を設定
             .attr('stroke', 'none') // 縁取りを削除
-            .text(truncatedLine);
+            .text(line);
         });
       }
     });
